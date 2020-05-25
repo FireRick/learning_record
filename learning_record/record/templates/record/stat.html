@@ -1,0 +1,41 @@
+{% extends "record/base.html" %}
+
+{% block main %}
+
+<h3>Today</h3>
+<table border="1">
+    <tbody>
+        {% for data in stat_today %}
+        <tr>
+            <td>{{data.name}}</td>
+            <td>{{data.count}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Last 7 days</h3>
+<table border="1">
+    <tbody>
+        {% for data in stat_seven_days %}
+        <tr>
+            <td>{{data.name}}</td>
+            <td>{{data.count}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>This year</h3>
+<table border="1">
+    <tbody>
+        {% for data in stat_this_year %}
+        <tr>
+            <td>{{data.name}}</td>
+            <td>{{data.count}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock main %}
