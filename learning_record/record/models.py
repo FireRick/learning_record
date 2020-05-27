@@ -6,8 +6,9 @@ class Item(models.Model):
     """ learning item """
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, verbose_name='Name')
-    description = models.CharField(max_length=1000, verbose_name='Description')
-    record_sum = models.IntegerField()
+    description = models.CharField(max_length=1000, verbose_name='Description',
+            blank=True, null=True)
+    record_sum = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -20,7 +21,8 @@ class Record(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
     # brief intro of what you learned
     key_content = models.CharField(max_length=200, verbose_name='Key Content')
-    description = models.CharField(max_length=1000, verbose_name='Description')
+    description = models.CharField(max_length=1000, verbose_name='Description',
+            blank=True, null=True)
 
     @classmethod
     def get_specified_days_stat(cls, days):
