@@ -9,6 +9,9 @@ class Item(models.Model):
     description = models.CharField(max_length=1000, verbose_name='Description')
     record_sum = models.IntegerField()
 
+    def __str__(self):
+        return self.name
+
 
 class Record(models.Model):
     """ learning record """
@@ -58,3 +61,7 @@ class Record(models.Model):
                     'count': count,
                 })
         return stat
+
+    def __str__(self):
+        return '%s: %s, %s' % (self.time.strftime('%m-%d %H:%M'), self.item.name,
+                self.key_content)
