@@ -1,4 +1,6 @@
 import datetime as dt
+from pytz import timezone
+from learning_record.settings import TIME_ZONE
 
 from django.db import models
 
@@ -65,5 +67,6 @@ class Record(models.Model):
         return stat
 
     def __str__(self):
-        return '%s: %s, %s' % (self.time.strftime('%m-%d %H:%M'), self.item.name,
+        time_timezone = self.time.astimezone(timezone(TIME_ZONE))
+        return '%s: %s, %s' % (time_timezone.strftime('%m-%d %H:%M'), self.item.name,
                 self.key_content)
