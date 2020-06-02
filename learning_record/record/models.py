@@ -10,7 +10,6 @@ class Item(models.Model):
     name = models.CharField(max_length=50, verbose_name='Name')
     description = models.CharField(max_length=1000, verbose_name='Description',
             blank=True, null=True)
-    record_sum = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
