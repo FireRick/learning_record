@@ -3,7 +3,7 @@
 {% block main %}
 
 <h3>Today</h3>
-<table border="1">
+<table class="table table-striped">
     <tbody>
         {% for data in stat_today %}
         <tr>
@@ -15,7 +15,7 @@
 </table>
 
 <h3>Last 7 days</h3>
-<table border="1">
+<table class="table table-striped">
     <tbody>
         {% for data in stat_seven_days %}
         <tr>
@@ -27,7 +27,7 @@
 </table>
 
 <h3>This year</h3>
-<table border="1">
+<table class="table table-striped">
     <tbody>
         {% for data in stat_this_year %}
         <tr>
