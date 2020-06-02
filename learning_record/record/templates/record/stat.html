@@ -8,7 +8,7 @@
         {% for data in stat_today %}
         <tr>
             <td>{{data.name}}</td>
-            <td>{{data.count}}</td>
+            <td>{{data.sum}}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -20,7 +20,7 @@
         {% for data in stat_seven_days %}
         <tr>
             <td>{{data.name}}</td>
-            <td>{{data.count}}</td>
+            <td>{{data.sum}}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -32,7 +32,7 @@
         {% for data in stat_this_year %}
         <tr>
             <td>{{data.name}}</td>
-            <td>{{data.count}}</td>
+            <td>{{data.sum}}</td>
         </tr>
         {% endfor %}
     </tbody>

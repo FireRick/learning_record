@@ -21,6 +21,7 @@ class Record(models.Model):
     id = models.AutoField(primary_key=True)
     time = models.DateTimeField()  # time of learning
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    duration = models.PositiveSmallIntegerField(default=10)  # unit: minutes
     # brief intro of what you learned
     key_content = models.CharField(max_length=200, verbose_name='Key Content')
     description = models.CharField(max_length=1000, verbose_name='Description',
@@ -32,12 +33,13 @@ class Record(models.Model):
         specified_days_ago = dt.date.today() - dt.timedelta(days=days)
         stat = []
         for item in Item.objects.all():
-            count = cls.objects.filter(item=item).filter(time__gte=specified_days_ago).count()
-            # drop item whoes count is 0;
-            if count > 0:
+            duration_sum = sum(cls.objects.filter(item=item).filter(
+                    time__gte=specified_days_ago).values_list('duration', flat=True))
+            # drop item whoes duration_sum is 0;
+            if duration_sum > 0:
                 stat.append({
                     'name': item.name,
-                    'count': count,
+                    'sum': duration_sum,
                 })
         return stat
 
@@ -57,12 +59,13 @@ class Record(models.Model):
         year = dt.date.today().year
         stat = []
         for item in Item.objects.all():
-            count = cls.objects.filter(item=item).filter(time__year=year).count()
-            # drop item whoes count is 0;
-            if count > 0:
+            duration_sum = sum(cls.objects.filter(item=item).filter(
+                    time__year=year).values_list('duration', flat=True))
+            # drop item whoes duration_sum is 0;
+            if duration_sum > 0:
                 stat.append({
                     'name': item.name,
-                    'count': count,
+                    'sum': duration_sum,
                 })
         return stat
 
