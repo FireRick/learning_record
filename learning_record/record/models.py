@@ -71,5 +71,5 @@ class Record(models.Model):
 
     def __str__(self):
         time_timezone = self.time.astimezone(timezone(TIME_ZONE))
-        return '%s: %s, %s' % (time_timezone.strftime('%m-%d %H:%M'), self.item.name,
-                self.key_content)
+        return '%s: %d, %s, %s' % (time_timezone.strftime('%m-%d %H:%M'),
+                self.duration, self.item.name, self.key_content)
